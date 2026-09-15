@@ -1,19 +1,19 @@
 [package]
 name = "armature-gcp"
-version = "0.2.0"
-edition.workspace = true
-rust-version.workspace = true
-authors.workspace = true
-license.workspace = true
+version = "0.2.2"
+edition = "2024"
+rust-version = "1.94.1"
+authors = ["Joseph Quinn <quinn.josephr@proton.me>"]
+license = "Apache-2.0"
 repository = "https://github.com/quinnjr/armature-gcp"
-homepage.workspace = true
+homepage = "https://quinnjr.github.io/armature"
 description = "Google Cloud Platform services integration for Armature - dynamically loadable and DI-ready"
 keywords = ["gcp", "google-cloud", "pubsub", "bigquery"]
 categories = ["web-programming", "asynchronous"]
 
 [dependencies]
 # Async runtime
-tokio = { version = "1.52", features = ["sync"] }
+tokio = { version = "1.53", features = ["sync"] }
 async-trait = "0.1"
 
 # GCP authentication
@@ -22,11 +22,11 @@ gcp_auth = { version = "0.12", optional = true }
 # Credentials construction for the gRPC-based SDKs (storage/pubsub). This is the
 # exact same google-cloud-auth version those SDKs compile against, so the
 # `Credentials` type unifies and can be threaded into their client builders.
-google-cloud-auth = { version = "1.14", optional = true, default-features = false }
+google-cloud-auth = { version = "1.16", optional = true, default-features = false }
 
 # GCP services (all optional)
-google-cloud-storage = { version = "1.15", optional = true }
-google-cloud-pubsub = { version = "1.1", optional = true }
+google-cloud-storage = { version = "1.18", optional = true }
+google-cloud-pubsub = { version = "1.4", optional = true }
 google-cloud-spanner = { version = "0.33", optional = true }
 gcloud-bigquery = { version = "1.7", optional = true }
 
@@ -46,7 +46,7 @@ parking_lot = "0.12"
 
 [dev-dependencies]
 cargo-husky = { version = "1.5", default-features = false, features = ["user-hooks"] }
-tokio = { version = "1.52", features = ["rt-multi-thread", "macros", "sync", "time", "net", "io-util", "fs", "test-util"] }
+tokio = { version = "1.53", features = ["rt-multi-thread", "macros", "sync", "time", "net", "io-util", "fs", "test-util"] }
 serde_json = "1.0"
 
 [features]
