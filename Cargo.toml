@@ -27,7 +27,11 @@ google-cloud-auth = { version = "1.16", optional = true, default-features = fals
 # GCP services (all optional)
 google-cloud-storage = { version = "1.18", optional = true }
 google-cloud-pubsub = { version = "1.4", optional = true }
-google-cloud-spanner = { version = "0.33", optional = true }
+# `gcloud-spanner` is the maintained continuation of `google-cloud-spanner` 0.x
+# (same author/API, renamed). It uses `gcloud-auth` 1.x → jsonwebtoken 10.x;
+# google-cloud-spanner 0.33 pinned google-cloud-auth 0.17 → jsonwebtoken 9.3.1
+# (CVE-2026-25537).
+gcloud-spanner = { version = "1.8", optional = true }
 gcloud-bigquery = { version = "1.7", optional = true }
 
 # HTTP client for REST APIs
@@ -56,7 +60,7 @@ auth = ["gcp_auth"]
 # Individual services
 storage = ["google-cloud-storage", "google-cloud-auth", "auth"]
 pubsub = ["google-cloud-pubsub", "google-cloud-auth", "auth"]
-spanner = ["google-cloud-spanner", "auth"]
+spanner = ["gcloud-spanner", "auth"]
 bigquery = ["gcloud-bigquery", "auth"]
 # REST-based services (use HTTP client)
 cloud-run = ["reqwest", "auth"]

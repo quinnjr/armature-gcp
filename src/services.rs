@@ -76,7 +76,7 @@ pub struct GcpServices {
     pubsub: RwLock<Option<google_cloud_pubsub::client::TopicAdmin>>,
 
     #[cfg(feature = "spanner")]
-    spanner: RwLock<Option<google_cloud_spanner::client::Client>>,
+    spanner: RwLock<Option<gcloud_spanner::client::Client>>,
 
     #[cfg(feature = "bigquery")]
     bigquery: RwLock<Option<gcloud_bigquery::client::Client>>,
@@ -245,7 +245,7 @@ impl GcpServices {
 
     #[cfg(feature = "spanner")]
     async fn init_spanner(&self) -> Result<()> {
-        use google_cloud_spanner::client::{Client, ClientConfig};
+        use gcloud_spanner::client::{Client, ClientConfig};
 
         if self.spanner.read().is_some() {
             return Ok(());
@@ -378,7 +378,7 @@ impl GcpServices {
 
     /// Get the Spanner client.
     #[cfg(feature = "spanner")]
-    pub fn spanner(&self) -> Result<google_cloud_spanner::client::Client> {
+    pub fn spanner(&self) -> Result<gcloud_spanner::client::Client> {
         if !self.config.is_enabled("spanner") {
             return Err(GcpError::not_configured("spanner"));
         }

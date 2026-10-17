@@ -93,7 +93,7 @@ pub use google_cloud_storage;
 pub use google_cloud_pubsub;
 
 #[cfg(feature = "spanner")]
-pub use google_cloud_spanner;
+pub use gcloud_spanner;
 
 #[cfg(feature = "bigquery")]
 pub use gcloud_bigquery;

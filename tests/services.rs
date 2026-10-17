@@ -226,3 +226,13 @@ async fn rest_service_requires_project_id() {
         "unexpected error: {err:?}"
     );
 }
+
+/// Spanner comes from the maintained `gcloud-spanner` crate (gcloud-auth 1.x →
+/// jsonwebtoken 10.x), not `google-cloud-spanner` 0.33 whose
+/// google-cloud-auth 0.17 pinned jsonwebtoken 9.3.1 (CVE-2026-25537). This pins
+/// the re-export path so a regression to the old crate fails to compile.
+#[cfg(feature = "spanner")]
+#[test]
+fn spanner_reexport_is_gcloud_spanner() {
+    let _ = std::any::type_name::<armature_gcp::gcloud_spanner::client::ClientConfig>();
+}
