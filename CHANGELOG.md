@@ -9,6 +9,8 @@ Earlier changes are recorded in the workspace [`CHANGELOG.md`](../CHANGELOG.md).
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-10-17
+
 ### Security
 
 - **Breaking:** the `spanner` feature now uses `gcloud-spanner` 1.8 instead of `google-cloud-spanner` 0.33. The old crate depended on `google-cloud-auth` 0.17, which pinned `jsonwebtoken` 9.3.1 (CVE-2026-25537); `gcloud-spanner` uses `gcloud-auth` 1.x → `jsonwebtoken` 10.x, the same stack `bigquery` already uses. The re-export moves from `armature_gcp::google_cloud_spanner` to `armature_gcp::gcloud_spanner`, and `GcpServices::spanner()` returns `gcloud_spanner::client::Client`. Migration: rename the import path; the client API is the same (same upstream author, renamed crate).
